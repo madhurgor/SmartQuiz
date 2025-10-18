@@ -6,5 +6,6 @@
     </linearGradient>
   </defs>
   <rect width="48" height="48" rx="8" fill="url(#grad)"/>
-  <text x="24" y="34" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle">🧠</text>
+  <circle cx="24" cy="24" r="18" fill="white" opacity="0.9"/>
+  <text x="24" y="32" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#667eea" text-anchor="middle">Q</text>
 </svg>
