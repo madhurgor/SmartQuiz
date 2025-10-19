@@ -21,17 +21,15 @@ function updateTimerDisplay() {
   if (timerDisplay) {
     timerDisplay.textContent = formatTime(currentTime);
     
-    // Update visual state based on elapsed time
+    // We still apply the 'alert' class at 5 minutes for animation only, but no color changes
     const totalSeconds = Math.floor(currentTime / 1000);
     
     // Remove any existing state classes
-    timerDisplay.classList.remove('warning', 'alert');
+    timerDisplay.classList.remove('alert');
     
-    // Add appropriate class based on time
+    // Add pulse animation after 5 minutes without color change
     if (totalSeconds >= 300) { // 5 minutes
       timerDisplay.classList.add('alert');
-    } else if (totalSeconds >= 180) { // 3 minutes
-      timerDisplay.classList.add('warning');
     }
   }
 }

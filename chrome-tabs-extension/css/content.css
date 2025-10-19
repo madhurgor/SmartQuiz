@@ -62,11 +62,10 @@
   font-size: 24px;
   margin-bottom: 10px;
   font-weight: bold;
-  color: #4285f4;
+  color: #000;
   text-shadow: 0 1px 1px rgba(0,0,0,0.1);
   font-family: 'Arial', sans-serif;
   letter-spacing: 0.5px;
-  transition: color 0.3s ease;
   padding: 5px 0;
 }
 
@@ -108,13 +107,8 @@
   padding: 2px 0;
 }
 
-/* Timer color states based on duration */
-.tabs-tracker-timer.warning {
-  color: #ff9800;
-}
-
+/* Timer animation for alert state */
 .tabs-tracker-timer.alert {
-  color: #f44336;
   animation: pulse 1.5s infinite;
 }
 
