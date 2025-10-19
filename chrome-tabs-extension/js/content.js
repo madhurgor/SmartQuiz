@@ -20,6 +20,19 @@ function formatTime(milliseconds) {
 function updateTimerDisplay() {
   if (timerDisplay) {
     timerDisplay.textContent = formatTime(currentTime);
+    
+    // Update visual state based on elapsed time
+    const totalSeconds = Math.floor(currentTime / 1000);
+    
+    // Remove any existing state classes
+    timerDisplay.classList.remove('warning', 'alert');
+    
+    // Add appropriate class based on time
+    if (totalSeconds >= 300) { // 5 minutes
+      timerDisplay.classList.add('alert');
+    } else if (totalSeconds >= 180) { // 3 minutes
+      timerDisplay.classList.add('warning');
+    }
   }
 }
 
@@ -124,18 +137,41 @@ function startTimerInterval() {
     clearInterval(timerInterval);
   }
   
+  // Set threshold for quiz popup (in seconds)
+  const quizThreshold = 10; // Show popup after this many seconds
+  
   // Update every second
   timerInterval = setInterval(() => {
     // Only increment if we're the active tab and popup is not shown
     if (document.visibilityState === 'visible' && !quizPopupShown) {
       currentTime += 1000;
+      
+      // Add a subtle pulse animation when timer updates
+      if (timerDisplay) {
+        timerDisplay.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+          if (timerDisplay) {
+            timerDisplay.style.transform = 'scale(1)';
+          }
+        }, 150);
+      }
+      
       updateTimerDisplay();
       
       // Check if we should show quiz popup
       if (isBlockedSite && !quizPopupShown) {
-        // Check if time has reached 10 seconds
-        const seconds = Math.floor(currentTime / 1000) % 60;
-        if (seconds === 10) {
+        // Check if time has reached the threshold
+        const totalSeconds = Math.floor(currentTime / 1000);
+        
+        // Show warning before popup appears
+        if (totalSeconds === quizThreshold - 3) {
+          // Flash the timer to warn user
+          if (timerDisplay) {
+            timerDisplay.style.animation = 'pulse 0.5s 3';
+          }
+        }
+        
+        if (totalSeconds === quizThreshold) {
           createQuizPopup();
         }
       }
@@ -147,17 +183,25 @@ function startTimerInterval() {
 function createPopup() {
   // Create the main container
   const popupContainer = document.createElement('div');
-  popupContainer.className = 'tabs-tracker-popup tabs-tracker-minimized';
+  popupContainer.className = 'tabs-tracker-popup';
   popupContainer.id = 'tabs-tracker-popup';
   
   // Create the timer display
   timerDisplay = document.createElement('div');
   timerDisplay.className = 'tabs-tracker-timer';
   timerDisplay.textContent = '00:00:00';
+  timerDisplay.title = 'Time spent on this page';
   
-  // Create empty containers (no reset or list buttons)
+  // Create reset button
+  const resetButton = document.createElement('button');
+  resetButton.textContent = 'Reset';
+  resetButton.title = 'Reset timer for this page';
+  resetButton.addEventListener('click', resetTimer);
+  
+  // Create timer controls with reset button
   const timerControls = document.createElement('div');
   timerControls.className = 'tabs-tracker-timer-controls';
+  timerControls.appendChild(resetButton);
   
   const buttonContainer = document.createElement('div');
   buttonContainer.className = 'tabs-tracker-buttons';
