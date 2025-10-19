@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartQuiz Extension Test Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .highlight {
+            background: #ffeb3b;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .instruction {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .quiz-topics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .topic {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 SmartQuiz Extension Test Page</h1>
+        
+        <div class="instruction">
+            <strong>Testing Instructions:</strong>
+            <ol>
+                <li>Install the SmartQuiz extension in Chrome</li>
+                <li>Click the extension icon in the toolbar to open the quiz popup</li>
+                <li>Try selecting text on this page to test the content script</li>
+                <li>Right-click to see context menu options</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h2>Extension Features to Test</h2>
+            <ul>
+                <li><strong>Popup Quiz:</strong> Click the SmartQuiz icon to start a quiz</li>
+                <li><strong>Text Selection:</strong> Select any text below to see the quiz creation option</li>
+                <li><strong>Context Menu:</strong> Right-click to access quick quiz options</li>
+                <li><strong>Storage:</strong> Take multiple quizzes to test score tracking</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>Sample Content for Text Selection Testing</h2>
+            <p>
+                <span class="highlight">JavaScript</span> is a high-level, interpreted programming language 
+                that conforms to the ECMAScript specification. It is a language that is also characterized 
+                as dynamic, weakly typed, prototype-based and multi-paradigm.
+            </p>
+            <p>
+                <span class="highlight">Machine Learning</span> is a method of data analysis that automates 
+                analytical model building. It is a branch of artificial intelligence based on the idea 
+                that systems can learn from data, identify patterns and make decisions with minimal 
+                human intervention.
+            </p>
+            <p>
+                <span class="highlight">Climate Change</span> refers to long-term shifts in global or 
+                regional climate patterns. It has been attributed largely to the increased levels of 
+                atmospheric carbon dioxide produced by the use of fossil fuels.
+            </p>
+        </div>
+
+        <div class="test-section">
+            <h2>Quiz Categories Available</h2>
+            <div class="quiz-topics">
+                <div class="topic">
+                    <h3>🌍 General Knowledge</h3>
+                    <p>Basic facts about the world, geography, and general trivia</p>
+                </div>
+                <div class="topic">
+                    <h3>🔬 Science</h3>
+                    <p>Physics, chemistry, biology, and scientific discoveries</p>
+                </div>
+                <div class="topic">
+                    <h3>📚 History</h3>
+                    <p>Historical events, figures, and important dates</p>
+                </div>
+                <div class="topic">
+                    <h3>💻 Technology</h3>
+                    <p>Computing, internet, programming, and modern tech</p>
+                </div>
+                <div class="topic">
+                    <h3>⚽ Sports</h3>
+                    <p>Sports facts, records, and athletic achievements</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Expected Behavior</h2>
+            <ul>
+                <li>Extension icon appears in Chrome toolbar</li>
+                <li>Clicking icon opens quiz popup (400x600px)</li>
+                <li>Quiz questions load correctly with multiple choice options</li>
+                <li>Score tracking works and persists between sessions</li>
+                <li>Text selection shows "🧠 Quiz" button briefly</li>
+                <li>Context menu shows SmartQuiz options</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>Troubleshooting</h2>
+            <p><strong>If the extension doesn't work:</strong></p>
+            <ul>
+                <li>Check Chrome Developer Tools console for errors</li>
+                <li>Verify all files are in the correct locations</li>
+                <li>Reload the extension from chrome://extensions/</li>
+                <li>Make sure you're using Chrome version 88 or later</li>
+                <li>Check that icons are properly loaded (or ignore icon errors for now)</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
