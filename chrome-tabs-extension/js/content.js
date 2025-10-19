@@ -68,8 +68,12 @@ function createQuizPopup() {
   
   const noButton = document.createElement('button');
   noButton.className = 'quiz-popup-button';
-  noButton.textContent = 'Not now';
-  noButton.addEventListener('click', hideQuizPopup);
+  noButton.textContent = 'Go to Assignment';
+  noButton.addEventListener('click', () => {
+    hideQuizPopup();
+    // Redirect to the first assignment site from the list
+    chrome.runtime.sendMessage({ action: 'redirectToAssignmentSite' });
+  });
   
   // Close button
   const closeButton = document.createElement('button');

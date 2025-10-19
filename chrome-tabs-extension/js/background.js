@@ -12,6 +12,14 @@ const blockedSites = [
   'tiktok.com'
 ];
 
+// List of assignment sites to redirect to
+const assignmentListSites = [
+  'https://canvas.instructure.com/assignments',
+  'https://classroom.google.com/assignments',
+  'https://www.khanacademy.org/assignments',
+  'https://www.coursera.org/assignments'
+];
+
 // Initialize storage when extension loads
 function initTabTimes() {
   chrome.storage.local.get(['tabTimes'], function(result) {
@@ -195,6 +203,35 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   } else if (request.action === 'openTabsList') {
     // Handle tabs list popup
     chrome.action.openPopup();
+  } else if (request.action === 'redirectToAssignmentSite') {
+    // Check all open tabs to see if any match with the assignment sites
+    if (sender.tab) {
+      chrome.tabs.query({}, function(tabs) {
+        // Flag to track if we found a matching tab
+        let foundMatchingTab = false;
+        
+        // Loop through all tabs and check if any URL matches with any assignment site
+        for (let i = 0; i < tabs.length; i++) {
+          const tab = tabs[i];
+          // Check if this tab's URL matches any assignment site URL
+          for (let j = 0; j < assignmentListSites.length; j++) {
+            if (tab.url && tab.url.includes(new URL(assignmentListSites[j]).hostname)) {
+              // Found a match, switch to this tab
+              chrome.tabs.update(tab.id, { active: true });
+              chrome.windows.update(tab.windowId, { focused: true });
+              foundMatchingTab = true;
+              break;
+            }
+          }
+          if (foundMatchingTab) break;
+        }
+        
+        // If no matching tab is found, redirect the current tab to the first assignment site
+        if (!foundMatchingTab && assignmentListSites.length > 0) {
+          chrome.tabs.update(sender.tab.id, { url: assignmentListSites[0] });
+        }
+      });
+    }
   } else if (request.action === 'resetTabTimer') {
     // Handle reset timer request from content script
     const tabId = request.tabId;
