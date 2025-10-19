@@ -55,12 +55,12 @@ function createQuizPopup() {
   // Create the title
   const title = document.createElement('div');
   title.className = 'quiz-popup-title';
-  title.textContent = 'Want to go over the fun quiz?';
+  title.textContent = 'Pop quiz time — let’s make it fun!';
   
   // Create buttons
   const yesButton = document.createElement('button');
   yesButton.className = 'quiz-popup-button';
-  yesButton.textContent = 'Pop quiz time — let’s make it fun!';
+  yesButton.textContent = 'Quick quiz!';
   yesButton.addEventListener('click', () => {
     // Here you would add the code to redirect to the quiz
     window.location.href = 'https://claude.ai/public/artifacts/5d8e1449-58ce-46fa-8d90-4006ec870c97?fullscreen=true';
