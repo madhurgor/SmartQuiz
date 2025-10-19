@@ -60,15 +60,15 @@ function createQuizPopup() {
   // Create buttons
   const yesButton = document.createElement('button');
   yesButton.className = 'quiz-popup-button';
-  yesButton.textContent = 'Yes, take me there!';
+  yesButton.textContent = 'Pop quiz time — let’s make it fun!';
   yesButton.addEventListener('click', () => {
     // Here you would add the code to redirect to the quiz
-    window.location.href = 'https://claude.ai/public/artifacts/c5129678-af5d-44fe-aafc-d174ae6b1454?fullscreen=true';
+    window.location.href = 'https://claude.ai/public/artifacts/5d8e1449-58ce-46fa-8d90-4006ec870c97?fullscreen=true';
   });
   
   const noButton = document.createElement('button');
   noButton.className = 'quiz-popup-button';
-  noButton.textContent = 'Go to Assignment';
+  noButton.textContent = 'Go back to Assignment';
   noButton.addEventListener('click', () => {
     hideQuizPopup();
     // Redirect to the first assignment site from the list
@@ -147,7 +147,7 @@ function startTimerInterval() {
 function createPopup() {
   // Create the main container
   const popupContainer = document.createElement('div');
-  popupContainer.className = 'tabs-tracker-popup';
+  popupContainer.className = 'tabs-tracker-popup tabs-tracker-minimized';
   popupContainer.id = 'tabs-tracker-popup';
   
   // Create the timer display
@@ -162,15 +162,7 @@ function createPopup() {
   const buttonContainer = document.createElement('div');
   buttonContainer.className = 'tabs-tracker-buttons';
   
-  // Add minimize button
-  const minimizeBtn = document.createElement('button');
-  minimizeBtn.className = 'tabs-tracker-minimize';
-  minimizeBtn.textContent = '−';
-  minimizeBtn.title = 'Minimize';
-  minimizeBtn.addEventListener('click', toggleMinimize);
-  
   // Add elements to the container
-  popupContainer.appendChild(minimizeBtn);
   popupContainer.appendChild(timerDisplay);
   popupContainer.appendChild(timerControls);
   popupContainer.appendChild(buttonContainer);
@@ -240,20 +232,7 @@ function makeDraggable(element) {
   }
 }
 
-// Toggle between minimized and full view
-function toggleMinimize() {
-  const popup = document.getElementById('tabs-tracker-popup');
-  popup.classList.toggle('tabs-tracker-minimized');
-  
-  const minimizeBtn = document.querySelector('.tabs-tracker-minimize');
-  if (popup.classList.contains('tabs-tracker-minimized')) {
-    minimizeBtn.textContent = '+';
-    minimizeBtn.title = 'Expand';
-  } else {
-    minimizeBtn.textContent = '−';
-    minimizeBtn.title = 'Minimize';
-  }
-}
+// Function removed as minimize toggle is no longer needed
 
 // Open the tabs list popup (function is kept for reference but not used)
 function openTabsList() {

@@ -14,6 +14,7 @@ const blockedSites = [
 
 // List of assignment sites to redirect to
 const assignmentListSites = [
+  'https://claude.ai/public/artifacts/4f311c00-bee5-4b81-8870-823cf2f0c7f8?fullscreen=true',
   'https://www.khanacademy.org/',
   'https://www.coursera.org/assignments',
   'https://classroom.google.com/',
