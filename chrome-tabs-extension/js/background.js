@@ -14,10 +14,9 @@ const blockedSites = [
 
 // List of assignment sites to redirect to
 const assignmentListSites = [
-  'https://canvas.instructure.com/assignments',
-  'https://classroom.google.com/assignments',
-  'https://www.khanacademy.org/assignments',
-  'https://www.coursera.org/assignments'
+  'https://www.khanacademy.org/',
+  'https://www.coursera.org/assignments',
+  'https://classroom.google.com/',
 ];
 
 // Initialize storage when extension loads
