@@ -63,7 +63,7 @@ function createQuizPopup() {
   yesButton.textContent = 'Yes, take me there!';
   yesButton.addEventListener('click', () => {
     // Here you would add the code to redirect to the quiz
-    window.location.href = 'https://claude.ai/public/artifacts/c5129678-af5d-44fe-aafc-d174ae6b1454';
+    window.location.href = 'https://claude.ai/public/artifacts/c5129678-af5d-44fe-aafc-d174ae6b1454?fullscreen=true';
   });
   
   const noButton = document.createElement('button');
@@ -155,33 +155,12 @@ function createPopup() {
   timerDisplay.className = 'tabs-tracker-timer';
   timerDisplay.textContent = '00:00:00';
   
-  // Create timer controls
+  // Create empty containers (no reset or list buttons)
   const timerControls = document.createElement('div');
   timerControls.className = 'tabs-tracker-timer-controls';
   
-  // Create reset button
-  const resetButton = document.createElement('button');
-  resetButton.textContent = 'Reset';
-  resetButton.addEventListener('click', resetTimer);
-  timerControls.appendChild(resetButton);
-  
-  // Create button container
   const buttonContainer = document.createElement('div');
   buttonContainer.className = 'tabs-tracker-buttons';
-  
-  // Create list button
-  const buttons = [
-    { id: 'tabs-btn-list', text: '≡ List', action: openTabsList }
-  ];
-  
-  // Add buttons to the container
-  buttons.forEach(button => {
-    const btnElement = document.createElement('button');
-    btnElement.id = button.id;
-    btnElement.textContent = button.text;
-    btnElement.addEventListener('click', button.action);
-    buttonContainer.appendChild(btnElement);
-  });
   
   // Add minimize button
   const minimizeBtn = document.createElement('button');
@@ -276,7 +255,7 @@ function toggleMinimize() {
   }
 }
 
-// Open the tabs list popup
+// Open the tabs list popup (function is kept for reference but not used)
 function openTabsList() {
   chrome.runtime.sendMessage({ action: 'openTabsList' });
 }
