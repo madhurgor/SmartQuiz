@@ -67,10 +67,7 @@
   font-family: 'Arial', sans-serif;
   letter-spacing: 0.5px;
   transition: color 0.3s ease;
-  padding: 8px 5px;
-  border-radius: 4px;
-  background-color: rgba(240, 240, 255, 0.5);
-  border-bottom: 2px solid #e8e8e8;
+  padding: 5px 0;
 }
 
 /* Timer controls */
@@ -108,18 +105,16 @@
 .tabs-tracker-minimized .tabs-tracker-timer {
   margin: 0;
   font-size: 18px;
-  padding: 4px;
+  padding: 2px 0;
 }
 
 /* Timer color states based on duration */
 .tabs-tracker-timer.warning {
   color: #ff9800;
-  background-color: rgba(255, 248, 225, 0.7);
 }
 
 .tabs-tracker-timer.alert {
   color: #f44336;
-  background-color: rgba(255, 235, 238, 0.7);
   animation: pulse 1.5s infinite;
 }
 

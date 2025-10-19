@@ -192,16 +192,9 @@ function createPopup() {
   timerDisplay.textContent = '00:00:00';
   timerDisplay.title = 'Time spent on this page';
   
-  // Create reset button
-  const resetButton = document.createElement('button');
-  resetButton.textContent = 'Reset';
-  resetButton.title = 'Reset timer for this page';
-  resetButton.addEventListener('click', resetTimer);
-  
-  // Create timer controls with reset button
+  // Create timer controls container
   const timerControls = document.createElement('div');
   timerControls.className = 'tabs-tracker-timer-controls';
-  timerControls.appendChild(resetButton);
   
   const buttonContainer = document.createElement('div');
   buttonContainer.className = 'tabs-tracker-buttons';
