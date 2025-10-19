@@ -1,0 +1,103 @@
+/* Styles for the tabs tracker overlay */
+.tabs-tracker-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2147483647; /* Maximum z-index to stay on top */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  min-width: 180px;
+}
+
+/* Minimize button */
+.tabs-tracker-minimize {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  padding: 0;
+  cursor: pointer;
+  color: #666;
+}
+
+.tabs-tracker-minimize:hover {
+  color: #333;
+}
+
+/* Button container */
+.tabs-tracker-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+/* Navigation buttons */
+.tabs-tracker-buttons button {
+  padding: 5px 15px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.tabs-tracker-buttons button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Timer display */
+.tabs-tracker-timer {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #4285f4;
+}
+
+/* Timer controls */
+.tabs-tracker-timer-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.tabs-tracker-timer-controls button {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 3px 8px;
+  margin: 0 3px;
+}
+
+.tabs-tracker-timer-controls button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Minimized state */
+.tabs-tracker-minimized {
+  min-width: auto;
+  padding: 5px;
+}
+
+.tabs-tracker-minimized .tabs-tracker-buttons,
+.tabs-tracker-minimized .tabs-tracker-timer-controls {
+  display: none;
+}
+
+.tabs-tracker-minimized .tabs-tracker-timer {
+  margin: 0;
+  font-size: 12px;
+}

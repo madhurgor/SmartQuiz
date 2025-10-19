@@ -7,6 +7,16 @@
     "default_popup": "popup.html",
     "default_title": "Tabs Tracker"
   },
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "storage"],
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/content.js"],
+      "css": ["css/content.css", "css/quiz-popup.css"]
+    }
+  ],
   "icons": {}
 }

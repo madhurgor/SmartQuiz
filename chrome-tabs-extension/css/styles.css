@@ -34,6 +34,7 @@ h1 {
   border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .tabs-list li:last-child {
@@ -65,11 +66,24 @@ h1 {
   border-radius: 3px;
 }
 
-.tab-title {
+.tab-content {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.tab-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.tab-time {
+  font-size: 12px;
+  color: #666;
+  margin-top: 3px;
 }
 
 .loading {

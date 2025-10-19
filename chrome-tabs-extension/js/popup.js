@@ -1,6 +1,19 @@
 // Store all tabs globally so we can filter them without querying again
 let allTabs = [];
 let activeTab = null;
+let tabTimes = {}; // Store time spent on each tab
+
+// Format time as HH:MM:SS
+function formatTime(milliseconds) {
+  if (!milliseconds) return '00:00:00';
+  
+  const totalSeconds = Math.floor(milliseconds / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
 
 // Function to get all tabs and display them
 function getTabs() {
@@ -11,23 +24,30 @@ function getTabs() {
   // Show loading message
   tabsList.innerHTML = '<li class="loading">Loading tabs...</li>';
   
-  // Query for all tabs across all windows
-  chrome.tabs.query({}, function(tabs) {
-    // Store all tabs globally
-    allTabs = tabs;
+  // Get all tab times first
+  chrome.runtime.sendMessage({ action: 'getAllTabTimes' }, function(response) {
+    if (response && response.tabTimes) {
+      tabTimes = response.tabTimes;
+    }
     
-    // Get the active tab
-    chrome.tabs.query({active: true, currentWindow: true}, function(activeTabs) {
-      activeTab = activeTabs[0];
+    // Query for all tabs across all windows
+    chrome.tabs.query({}, function(tabs) {
+      // Store all tabs globally
+      allTabs = tabs;
       
-      // Update tabs count
-      tabsCount.textContent = `Total open tabs: ${tabs.length}`;
-      
-      // Sort tabs by window ID to group them
-      tabs.sort((a, b) => a.windowId - b.windowId);
-      
-      // Display the tabs
-      displayTabs(tabs);
+      // Get the active tab
+      chrome.tabs.query({active: true, currentWindow: true}, function(activeTabs) {
+        activeTab = activeTabs[0];
+        
+        // Update tabs count
+        tabsCount.textContent = `Total open tabs: ${tabs.length}`;
+        
+        // Sort tabs by window ID to group them
+        tabs.sort((a, b) => a.windowId - b.windowId);
+        
+        // Display the tabs
+        displayTabs(tabs);
+      });
     });
   });
 }
@@ -79,6 +99,10 @@ function displayTabs(tabs) {
       favicon.textContent = '📄'; // Document emoji as placeholder
     }
     
+    // Create container for title and time
+    const contentContainer = document.createElement('div');
+    contentContainer.className = 'tab-content';
+    
     // Create title span
     const title = document.createElement('span');
     title.className = 'tab-title';
@@ -87,6 +111,11 @@ function displayTabs(tabs) {
     // Add tooltip with full URL
     title.title = tab.url;
     
+    // Create timer display
+    const timeDisplay = document.createElement('span');
+    timeDisplay.className = 'tab-time';
+    timeDisplay.textContent = formatTime(tabTimes[tab.id]);
+    
     // Add click event to switch to this tab
     tabItem.addEventListener('click', function() {
       chrome.tabs.update(tab.id, {active: true});
@@ -94,9 +123,13 @@ function displayTabs(tabs) {
       window.close(); // Close the popup
     });
     
+    // Add title and time to content container
+    contentContainer.appendChild(title);
+    contentContainer.appendChild(timeDisplay);
+    
     // Append elements to the list item
     tabItem.appendChild(favicon);
-    tabItem.appendChild(title);
+    tabItem.appendChild(contentContainer);
     
     // Append the list item to the list
     tabsList.appendChild(tabItem);
